@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './core/components/login/login.component';
 import { MainComponent } from './modules/main/main/main.component';
 import { InicioComponent } from './modules/main/pages/inicio/inicio.component';
-import { IncidenciasComponent } from './modules/main/pages/incidencias/main/incidencias.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -14,6 +14,7 @@ const routes: Routes = [
   {
     path: "APP-INCIDENCIAS",
     component: MainComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'inicio',
