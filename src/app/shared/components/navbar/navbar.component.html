@@ -1,0 +1,15 @@
+<header>
+    <div class="logo">
+        <img src="assets/img/GBM.png" alt="Logo de aplicacion">
+    </div>
+    <nav>
+        <ul>
+            <ng-container *ngFor="let n of navbarData">
+                <li>
+                    <a [routerLink]="n.route" [ngClass]="{ 'active': getActiveClass(n) }"> {{ n.label }} </a>
+                </li>
+            </ng-container>
+        </ul>
+    </nav>
+    <a type="button" (click)="onLogout()"> &LeftArrow; </a>
+</header>

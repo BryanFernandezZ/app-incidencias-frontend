@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IconosService } from './shared/services/iconos.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app-incidencias';
+
+  constructor(private iconService: IconosService) {
+    this.iconService.globalIcons();
+  }
+
 }

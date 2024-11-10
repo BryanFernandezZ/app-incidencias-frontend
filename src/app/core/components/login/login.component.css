@@ -1,0 +1,11 @@
+.card {
+    max-width: 350px;
+    width: 100%;
+}
+
+.card-body {
+    background-image: url("/assets/img/martinez.jpeg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

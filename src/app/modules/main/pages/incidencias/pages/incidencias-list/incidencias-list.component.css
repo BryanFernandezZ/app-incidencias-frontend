@@ -1,0 +1,21 @@
+a {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.estado-color {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+}

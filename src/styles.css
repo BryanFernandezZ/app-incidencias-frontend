@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --primary-color: #ebee48;
+    --dark-color: #252552;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    background: var(--primary-color);
+}
+
+.active {
+    color: red!important;
+    font-weight: bold;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.btn-primario {
+    width: 100%;
+    border: 0px;
+    border-radius: 1rem;
+    padding: 10px 0px;
+}

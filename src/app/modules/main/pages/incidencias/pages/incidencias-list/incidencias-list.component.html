@@ -1,0 +1,40 @@
+<div class="p-5">
+    <div class="d-flex justify-content-between align-items-center gap-3">
+        
+        <div class="d-flex justify-content-between align-items-center gap-3">
+            <h2> Lista de Incidencias </h2>
+            <a type="button" (click)="onRegistrar()"> <mat-icon svgIcon="icon_plus"></mat-icon> </a>
+        </div>
+
+        <ul class="d-flex justify-content-start align-items-center gap-3 m-0 p-0">
+            <ng-container *ngFor="let e of estados">
+                <li>
+                    <div class="estado-color me-1" [style.background]="e.color"></div>
+                    <span> {{ e.estado }} </span>
+                </li>
+            </ng-container>
+        </ul>
+    </div>
+
+
+    <table class="table mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th> ID </th>
+                <th> Descripcion </th>
+                <th> F.Registro </th>
+                <th>  </th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let i of incidencias">
+                <tr>
+                    <td> {{ i.id }} </td>
+                    <td> {{ i.descripcion }} </td>
+                    <td> {{ i.fechaRegistro }} </td>
+                    <td> {{ i.estadoActual }} </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
