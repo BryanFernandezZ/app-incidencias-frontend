@@ -14,6 +14,8 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
 import { ToastrModule } from 'ngx-toastr';
 import { ApiInterceptor } from './core/api-interceptor';
 import { AuthGuard } from './core/guards/auth.guard';
+import { ColaboradorComponent } from './modules/main/pages/colaborador/colaborador.component';
+import { ClienteComponent } from './modules/main/pages/cliente/main/cliente.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { AuthGuard } from './core/guards/auth.guard';
     InicioComponent,
     NavbarComponent,
     SpinnerComponent,
+    ClienteComponent,
+    ColaboradorComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,7 @@ import { AuthGuard } from './core/guards/auth.guard';
     ReactiveFormsModule,
     ToastrModule.forRoot(),
   ],
+  exports: [SpinnerComponent],
   providers: [
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }

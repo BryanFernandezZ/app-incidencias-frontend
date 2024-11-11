@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IncidenciaRequesDto } from '../../dto/incidencia.request';
+import { IncidenciaService } from '../../services/incidencia.service';
 
 @Component({
   selector: 'app-incidencias-new',
@@ -11,5 +13,4 @@ export class IncidenciasNewComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

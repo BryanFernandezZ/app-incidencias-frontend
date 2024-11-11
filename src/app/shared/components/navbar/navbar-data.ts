@@ -4,7 +4,7 @@ export const NAVBAR_DATA: Array<INavbarData> = [
         label: 'Inicio'
     },
     {
-        route: 'incidencias',
+        route: 'cliente/incidencias',
         label: 'Mis incidencias'
     }
 ]

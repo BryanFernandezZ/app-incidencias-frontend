@@ -22,8 +22,8 @@ const routes: Routes = [
         title: 'Inicio',
       },
       {
-        path: 'incidencias',
-        loadChildren: () => import('./modules/main/pages/incidencias/incidencias.module').then(m => m.IncidenciasModule),
+        path: 'cliente',
+        loadChildren: () => import('./modules/main/pages/cliente/cliente.module').then(m => m.ClienteModule),
       },
       {
         path: '',
@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'APP-INCIDENCIAS',
     pathMatch: 'full',
   }
 ];

@@ -1,0 +1,61 @@
+<form class="p-4" [formGroup]="incidenciaForm">
+    <div class="row">
+        <div class="col">
+            <h4> {{ title }} </h4>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col">
+            <div class="mb-3">
+                <label class="form-label"> Dispositivo </label>
+                <select class="form-select" [ngClass]="{ 'is-invalid': isSubmit && contrato.hasError('required')}" formControlName="contrato" >
+                    <option [value]="null"> Seleccione un dispositivo </option>
+                    <ng-container *ngFor="let c of contratoList">
+                        <option [value]="c.idContrato"> {{ c.nombre }} </option>
+                    </ng-container>
+                </select>
+                <div class="invalid-feedback"> *Dispositivo es requerido* </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"> Asunto </label>
+                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': isSubmit && asunto.hasError('required')}" formControlName="asunto">
+                <div class="invalid-feedback"> *Asunto es requerido* </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"> Detalle </label>
+                <textarea class="form-control" [ngClass]="{ 'is-invalid': isSubmit && detalle.hasError('required')}" formControlName="detalle"></textarea>
+                <div class="invalid-feedback"> *Detalle es requerido* </div>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center mb-3">
+                <ng-container *ngIf="isLoading">
+                    <app-spinner></app-spinner>
+                </ng-container>
+                <ng-container *ngIf="!isLoading">
+                    <button type="button" class="btn-primario mt-3" (click)="onSaveIncidencia()"> Registrar </button>
+                </ng-container>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-3">
+                <label class="form-label"> Imagen Referencial </label>
+                <input type="file" class="form-control" accept=".png, .jpg, .jpeg" [ngClass]="{ 'is-invalid': isSubmit && image.hasError('required')}" 
+                    (change)="onFileChange($event)" formControlName="image" />
+                <div class="invalid-feedback"> *Imagen es requerido* </div>
+            </div>
+
+            <ng-container *ngIf="imageUrl">
+                <div class="mb-3">
+                    <label class="form-label"> Imagen seleccionada </label>
+                    <img [src]="imageUrl" class="d-block" width="300">
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+</form>

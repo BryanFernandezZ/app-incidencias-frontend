@@ -22,7 +22,7 @@ export class IncidenciasListComponent implements OnInit {
 
 
   onRegistrar() {
-    this.router.navigate(['APP-INCIDENCIAS/incidencias/registrar']);
+    this.router.navigate(['APP-INCIDENCIAS/cliente/incidencias/registrar']);
   }
 }
 
