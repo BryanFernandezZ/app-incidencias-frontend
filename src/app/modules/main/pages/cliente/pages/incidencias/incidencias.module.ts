@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { IncidenciasNewComponent } from './pages/incidencias-new/incidencias-new.component';
 import { IncidenciasFormComponent } from './components/incidencias-form/incidencias-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SpinnerComponent } from 'src/app/shared/components/spinner/spinner.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,13 +15,14 @@ import { SpinnerComponent } from 'src/app/shared/components/spinner/spinner.comp
     IncidenciasListComponent,
     IncidenciasNewComponent,
     IncidenciasFormComponent,
-    SpinnerComponent,
   ],
   imports: [
     CommonModule,
     IncidenciasRoutingModule,
     MatIconModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class IncidenciasModule { }
