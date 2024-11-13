@@ -18,6 +18,7 @@ export class ApiInterceptor implements HttpInterceptor {
             return next.handle(newRequest).pipe(
                 catchError((error) => {
                     if(error.status === 401) {
+                        this.authService.clearUserSession();
                         this.router.navigate(['login']);
                     }
                     return throwError(error);

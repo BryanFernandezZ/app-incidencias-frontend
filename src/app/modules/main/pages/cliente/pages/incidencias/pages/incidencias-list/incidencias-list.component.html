@@ -3,7 +3,7 @@
         
         <div class="d-flex justify-content-between align-items-center gap-3">
             <h2> Lista de Incidencias </h2>
-            <a type="button" (click)="onRegistrar()"> <mat-icon svgIcon="icon_plus"></mat-icon> </a>
+            <a type="button" class="nuevo" (click)="onRegistrar()"> <mat-icon svgIcon="icon_plus"></mat-icon> </a>
         </div>
 
         <ul class="d-flex justify-content-start align-items-center gap-3 m-0 p-0">
@@ -21,7 +21,8 @@
         <thead class="table-dark">
             <tr>
                 <th> ID </th>
-                <th> Descripcion </th>
+                <th> Asunto </th>
+                <th> Detalle </th>
                 <th> F.Registro </th>
                 <th>  </th>
             </tr>
@@ -29,10 +30,29 @@
         <tbody>
             <ng-container *ngFor="let i of incidencias">
                 <tr>
-                    <td> {{ i.id }} </td>
-                    <td> {{ i.descripcion }} </td>
+                    <td> {{ i.idIncidencia }} </td>
+                    <td> {{ i.asunto }} </td>
+                    <td> {{ i.detalle }} </td>
                     <td> {{ i.fechaRegistro }} </td>
-                    <td> {{ i.estadoActual }} </td>
+                    <td>
+                        <ng-container *ngIf="i.pendiente">
+                            <div class="d-flex justify-content-center align-items-center gap-2">
+                                <a type="button" class="btn-accion"> Actualizar </a>
+                                <div class="estado-color" [style.background]="pendienteColor"></div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="i.presencial">
+                            <div class="d-flex justify-content-center align-items-center gap-2">
+                                <div> *Fecha programada* </div>
+                                <div class="estado-color" [style.background]="atencionDomicilioColor"></div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="i.solucionado">
+                            <div class="d-flex justify-content-center align-items-center gap-2">
+                                <div class="estado-color" [style.background]="solucionadoColor"></div>
+                            </div>
+                        </ng-container>
+                    </td>
                 </tr>
             </ng-container>
         </tbody>
