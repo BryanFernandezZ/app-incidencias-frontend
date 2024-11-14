@@ -14,7 +14,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label"> Contraseña </label>
-                    <input type="password" class="form-control" [ngClass]="{ 'is-invalid': isSubmit && password.hasError('required') }" formControlName="password" autocomplete="off">
+                    <input type="password" class="form-control" [ngClass]="{ 'is-invalid': isSubmit && password.hasError('required') }" formControlName="password" autocomplete="new-password">
                     <div class="invalid-feedback">
                         *Contraseña es obligatorio*
                     </div>
