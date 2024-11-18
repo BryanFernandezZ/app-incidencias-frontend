@@ -13,8 +13,8 @@
                 <label class="form-label"> Dispositivo </label>
                 <select class="form-select" [ngClass]="{ 'is-invalid': isSubmit && contrato.hasError('required')}" formControlName="contrato" >
                     <option [value]="null"> Seleccione un dispositivo </option>
-                    <ng-container *ngFor="let c of contratoList">
-                        <option [value]="c.idContrato"> {{ c.nombre }} </option>
+                    <ng-container *ngFor="let d of devicesList">
+                        <option [value]="d.idContrato"> {{ d.nombre }} </option>
                     </ng-container>
                 </select>
                 <div class="invalid-feedback"> *Dispositivo es requerido* </div>
@@ -43,7 +43,7 @@
         </div>
         <div class="col">
             <div class="mb-3">
-                <label class="form-label"> Imagen Referencial </label>
+                <label class="form-label"> Imagen Referencial (opcional) </label>
                 <input type="file" class="form-control" accept=".png, .jpg, .jpeg" [ngClass]="{ 'is-invalid': isSubmit && image.hasError('required')}" 
                     (change)="onFileChange($event)" formControlName="image" />
                 <div class="invalid-feedback"> *Imagen es requerido* </div>
@@ -52,7 +52,7 @@
             <ng-container *ngIf="imageUrl">
                 <div class="mb-3">
                     <label class="form-label"> Imagen seleccionada </label>
-                    <img [src]="imageUrl" class="d-block" width="300">
+                    <img [src]="imageUrl" class="d-block" width="350">
                 </div>
             </ng-container>
 

@@ -37,7 +37,7 @@
                     <td>
                         <ng-container *ngIf="i.pendiente">
                             <div class="d-flex justify-content-center align-items-center gap-2">
-                                <a type="button" class="btn-accion"> Actualizar </a>
+                                <a type="button" class="btn-accion" (click)="onUpdateIncidencia(i.idIncidencia)"> Actualizar </a>
                                 <div class="estado-color" [style.background]="pendienteColor"></div>
                             </div>
                         </ng-container>

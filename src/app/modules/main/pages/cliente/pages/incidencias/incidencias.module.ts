@@ -8,6 +8,7 @@ import { IncidenciasNewComponent } from './pages/incidencias-new/incidencias-new
 import { IncidenciasFormComponent } from './components/incidencias-form/incidencias-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { IncidenciasEditComponent } from './pages/incidencias-edit/incidencias-edit.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     IncidenciasListComponent,
     IncidenciasNewComponent,
     IncidenciasFormComponent,
+    IncidenciasEditComponent,
   ],
   imports: [
     CommonModule,

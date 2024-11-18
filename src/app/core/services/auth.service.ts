@@ -12,7 +12,7 @@ import * as jose from 'jose';
 })
 export class AuthService {
 
-  private baseUrl = environment.api_url;
+  private baseUrl = environment.api_url + "/auth";
 
   constructor(
     private httpClient: HttpClient,
@@ -24,9 +24,10 @@ export class AuthService {
 
   setUserSession(loginResponse: LoginResponseDto) {
     const token = loginResponse.token;
-    const payload = jose.decodeJwt(token) as UserSession;
+    const payload = jose.decodeJwt(token) as any;
+    const userSession = payload.user;
     localStorage.setItem("access_token", token);
-    localStorage.setItem("user", JSON.stringify(payload));
+    localStorage.setItem("user", JSON.stringify(userSession));
   }
 
   getUserSession(): UserSession {

@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IncidenciaRequesDto } from '../../dto/incidencia.request';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IncidenciaService } from '../../services/incidencia.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AlertService } from 'src/app/shared/services/alert.service';
-import { DispositivoService } from 'src/app/shared/services/dispositivo.service';
 import { DispositivoCliente } from 'src/app/shared/model/dispositivo-cliente.model';
-import { ContratoService } from 'src/app/shared/services/contrato.service';
-import { ContratoClienteDispositivo } from 'src/app/shared/model/contrato-dispositivo.model';
+import { ActivatedRoute } from '@angular/router';
+import { Incidencia } from '../../model/incidencia.model';
+import { DispositivoService } from 'src/app/shared/services/dispositivo.service';
 
 @Component({
   selector: 'app-incidencias-form',
@@ -20,9 +20,9 @@ export class IncidenciasFormComponent implements OnInit {
   @Input() isEdit: boolean = false;
 
   devicesList: Array<DispositivoCliente> = [];
-  contratoList: Array<ContratoClienteDispositivo> = [];
 
   clientId: number = 0;
+  incidenciaId: number = 0;
 
   selectedImage: File | null = null;
   imageUrl: string | ArrayBuffer | null | undefined = null;
@@ -35,7 +35,7 @@ export class IncidenciasFormComponent implements OnInit {
       contrato: [null, Validators.required],
       asunto: [null, Validators.required],
       detalle: [null, Validators.required],
-      image: [null, Validators.required],
+      image: [null],
     }
   )
 
@@ -43,10 +43,12 @@ export class IncidenciasFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private incidenciaService: IncidenciaService,
-    private contratoService: ContratoService,
+    private dispositivoService: DispositivoService,
     private alertService: AlertService,
+    private activatedRoute: ActivatedRoute,
   ) {
     this.clientId = this.authService.getUserSession().cliente?.idCliente ?? 0;
+    this.incidenciaId = this.activatedRoute.snapshot.params['id'];
   }
 
   get contrato() {
@@ -64,12 +66,35 @@ export class IncidenciasFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDevicesByClient();
+    this.checkCurrentAction();
+  }
+
+  checkCurrentAction() {
+    if(this.isEdit) {
+      this.incidenciaService.obtenerIncidencia(this.incidenciaId).subscribe(
+        {
+          next: (res) => this.setIncidenciaData(res),
+          error: (err) => console.error(err),
+          complete: () => {}
+        }
+      )
+    }
+  }
+
+  setIncidenciaData(incidencia: Incidencia | null): void {
+    if(incidencia !== null) {
+      this.contrato.setValue(incidencia.idContrato);
+      this.asunto.setValue(incidencia.asunto);
+      this.detalle.setValue(incidencia.detalle);
+      this.image.setValue(null);
+      this.imageUrl = incidencia.imagen;
+    }
   }
 
   getDevicesByClient() {
-    this.contratoService.getContratosByClient(this.clientId).subscribe(
+    this.dispositivoService.getDevicesByClientId(this.clientId).subscribe(
       {
-        next: (res) => this.contratoList = res,
+        next: (res) => this.devicesList = res,
         error: (err) => console.error(err),
         complete: () => {},
       }
@@ -116,17 +141,8 @@ export class IncidenciasFormComponent implements OnInit {
     return {
       asunto: this.asunto.value,
       detalle: this.detalle.value,
-      calificacion: 0,
-      pendiente: true,
-      presencial: false,
-      solucionado: false,
       usuarioAsignado: null,
-      cliente: {
-        idCliente: this.clientId,
-      },
-      contrato: {
-        idContrato: parseInt(this.contrato.value),
-      }
+      idContrato: parseInt(this.contrato.value),
     }
   }
 
