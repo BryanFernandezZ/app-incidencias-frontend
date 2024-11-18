@@ -27,6 +27,13 @@ export class IncidenciaService {
     return this.httpClient.post<any>(`${this.basUrl}/registrar`, formData);
   }
 
+  updateIncidencia(idIncidencia: number, incidenciaRequesDto: IncidenciaRequesDto, imagen: File): Observable<any> {
+    const formData = new FormData();
+    formData.append("incidencia", JSON.stringify(incidenciaRequesDto));
+    formData.append("imagen", imagen);
+    return this.httpClient.put<any>(`${this.basUrl}/actualizar/${idIncidencia}`, formData);
+  }
+
   listarIncidencias(idCliente: number): Observable<Array<IncidenciaLista>> {
     return this.httpClient.get<Array<IncidenciaResponseDto>>(`${this.basUrl}/cliente/${idCliente}`).pipe(
       map(response => this.mapperService.mapToListaIncidencias(response)),

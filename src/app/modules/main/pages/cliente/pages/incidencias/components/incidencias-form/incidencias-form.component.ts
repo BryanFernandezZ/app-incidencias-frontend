@@ -71,14 +71,18 @@ export class IncidenciasFormComponent implements OnInit {
 
   checkCurrentAction() {
     if(this.isEdit) {
-      this.incidenciaService.obtenerIncidencia(this.incidenciaId).subscribe(
+      this.obtenerIncidenciaPorId();
+    }
+  }
+
+  obtenerIncidenciaPorId() {
+    this.incidenciaService.obtenerIncidencia(this.incidenciaId).subscribe(
         {
           next: (res) => this.setIncidenciaData(res),
           error: (err) => console.error(err),
           complete: () => {}
         }
       )
-    }
   }
 
   setIncidenciaData(incidencia: Incidencia | null): void {
@@ -120,19 +124,38 @@ export class IncidenciasFormComponent implements OnInit {
       //  SAVE INCIDENCIA
       this.isLoading = true;
       const incidenciaRequest = this.createIncidenciaRequest();
-      this.incidenciaService.createIncidencia(incidenciaRequest, this.selectedImage!).subscribe(
-        {
-          next: (res) => console.log(res),
-          error: (err) => {
-            this.isLoading = false;
-            console.error(err);
-          },
-          complete: () => {
-            this.resetAll();
-            this.alertService.successAlertMessage("Incidencia registrada", "Se registro la incidencia correctamente!");
+      if(this.isEdit) {
+        //  ACTUALIZAR INCIDENCIA
+        this.incidenciaService.updateIncidencia(this.incidenciaId, incidenciaRequest, this.selectedImage!).subscribe(
+          {
+            next: (res) => console.log(res),
+            error: (err) => {
+              this.isLoading = false;
+              console.error(err);
+            },
+            complete: () => {
+              this.resetAll();
+              this.alertService.successAlertMessage("Incidencia actualizada", "Se actualizo la incidencia correctamente!");
+              this.obtenerIncidenciaPorId();
+            }
           }
-        }
-      )
+        )
+      } else {
+        //  REGISTRAR INCIDENCIA
+        this.incidenciaService.createIncidencia(incidenciaRequest, this.selectedImage!).subscribe(
+          {
+            next: (res) => console.log(res),
+            error: (err) => {
+              this.isLoading = false;
+              console.error(err);
+            },
+            complete: () => {
+              this.resetAll();
+              this.alertService.successAlertMessage("Incidencia registrada", "Se registro la incidencia correctamente!");
+            }
+          }
+        )
+      }
     }
   }
 
