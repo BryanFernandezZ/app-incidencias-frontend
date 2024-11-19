@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { INavbarData, NAVBAR_DATA } from './navbar-data';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { Rol } from '../../data/role.enum';
 
 @Component({
   selector: 'app-navbar',
@@ -27,5 +28,10 @@ export class NavbarComponent implements OnInit {
 
   getActiveClass(data: INavbarData): string {
     return this.router.url.includes(data.route) ? 'active' : '';
+  }
+
+  checkRole(rol: Rol): boolean {
+    const rolUsuario = this.authService.getUserSession().rol;
+    return rolUsuario.nombre.toUpperCase() === rol;
   }
 }

@@ -4,6 +4,8 @@ import { LoginComponent } from './core/components/login/login.component';
 import { MainComponent } from './modules/main/main/main.component';
 import { InicioComponent } from './modules/main/pages/inicio/inicio.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { Rol } from './shared/data/role.enum';
+import { RoleGuard } from './core/guards/role.guard';
 
 const routes: Routes = [
   {
@@ -24,6 +26,8 @@ const routes: Routes = [
       {
         path: 'cliente',
         loadChildren: () => import('./modules/main/pages/cliente/cliente.module').then(m => m.ClienteModule),
+        canActivate: [RoleGuard],
+        data: { rol: Rol.COMUN },
       },
       {
         path: '',
