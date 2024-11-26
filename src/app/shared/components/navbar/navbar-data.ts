@@ -9,6 +9,11 @@ export const NAVBAR_DATA: Array<INavbarData> = [
         route: 'cliente/incidencias',
         label: 'Mis incidencias',
         role: Rol.COMUN,
+    },
+    {
+        route: 'colaborador/clientes',
+        label: 'Clientes',
+        role: Rol.ADMIN,
     }
 ]
 

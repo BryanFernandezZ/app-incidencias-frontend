@@ -1,0 +1,60 @@
+<form class="p-4" [formGroup]="clienteForm">
+    <div class="row">
+        <div class="col">
+            <h4> {{ title }} </h4>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col">
+            <div class="mb-3">
+                <label class="form-label"> Nombre </label>
+                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': isSubmit && nombre.hasError('required')}" formControlName="nombre">
+                <div class="invalid-feedback"> *Nombre es requerido* </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"> Apellido </label>
+                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': isSubmit && apellido.hasError('required')}" formControlName="apellido">
+                <div class="invalid-feedback"> *Apellido es requerido* </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"> Direccion </label>
+                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': isSubmit && direccion.hasError('required')}" formControlName="direccion">
+                <div class="invalid-feedback"> *Direccion es requerido* </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"> Telefono </label>
+                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': isSubmit && telefono.hasError('required')}" formControlName="telefono">
+                <div class="invalid-feedback"> *Telefono es requerido* </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"> Usuario </label>
+                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': isSubmit && usuario.hasError('required')}" formControlName="usuario">
+                <div class="invalid-feedback"> *Usuario es requerido* </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"> Contraseña </label>
+                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': isSubmit && contrasena.hasError('required')}" formControlName="contrasena">
+                <div class="invalid-feedback"> *Contraseña es requerido* </div>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center mb-3">
+                <ng-container *ngIf="isLoading">
+                    <app-spinner></app-spinner>
+                </ng-container>
+                <ng-container *ngIf="!isLoading">
+                    <button type="button" class="btn-primario mt-3" (click)="onRegistrarCliente()"> Registrar </button>
+                </ng-container>
+            </div>
+
+        </div>
+
+    </div>
+</form>

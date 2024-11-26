@@ -1,0 +1,6 @@
+a {
+    background: var(--primary-color);
+    border-radius: 10px;
+    text-decoration: none;
+    color: #252525;
+}

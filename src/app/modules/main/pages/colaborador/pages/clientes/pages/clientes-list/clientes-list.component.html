@@ -1,0 +1,29 @@
+<div class="p-5">
+    <div class="d-flex justify-content-between align-items-center gap-3">
+        <h2> Lista de Clientes </h2>
+        <a type="button" class="nuevo" (click)="onRegistrar()"> <mat-icon svgIcon="icon_plus"></mat-icon> </a>
+    </div>
+
+    <table class="table mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th> ID </th>
+                <th> Nombres </th>
+                <th> Apellidos </th>
+                <th>  </th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let c of clientesList">
+                <tr>
+                    <td> {{ c.idCliente }} </td>
+                    <td> {{ c.nombre }} </td>
+                    <td> {{ c.apellido }} </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-primary" (click)="onVerDispositivos(c.idCliente, c.nombre, c.apellido)"> Ver dispositivos </button>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

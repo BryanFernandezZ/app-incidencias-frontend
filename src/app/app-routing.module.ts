@@ -30,6 +30,12 @@ const routes: Routes = [
         data: { rol: Rol.COMUN },
       },
       {
+        path: 'colaborador',
+        loadChildren: () => import('./modules/main/pages/colaborador/colaborador.module').then(m => m.ColaboradorModule),
+        canActivate: [RoleGuard],
+        data: { rol: Rol.ADMIN },
+      },
+      {
         path: '',
         redirectTo: 'inicio',
         pathMatch: 'full',

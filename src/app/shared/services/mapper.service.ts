@@ -4,6 +4,8 @@ import { IncidenciaLista } from 'src/app/modules/main/pages/cliente/pages/incide
 import { DispositivoClienteResponseDto } from '../dto/dispositivo.response';
 import { DispositivoCliente } from '../model/dispositivo-cliente.model';
 import { Incidencia } from 'src/app/modules/main/pages/cliente/pages/incidencias/model/incidencia.model';
+import { ClienteListaResponseDto } from 'src/app/modules/main/pages/colaborador/pages/clientes/dto/clientes-list.response';
+import { ClienteLista } from 'src/app/modules/main/pages/colaborador/pages/clientes/model/cliente-lista.model';
 
 @Injectable({
   providedIn: 'root'
@@ -55,5 +57,15 @@ export class MapperService {
       }
     }
     return null;
+  }
+
+  mapToListaClientes(response: ClienteListaResponseDto[]): Array<ClienteLista> {
+    return response.map(item => (
+      {
+        idCliente: item.id_cliente,
+        nombre: item.nombre,
+        apellido: item.apellido,
+      }
+    ))
   }
 }

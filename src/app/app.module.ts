@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { ApiInterceptor } from './core/api-interceptor';
 import { AuthGuard } from './core/guards/auth.guard';
-import { ColaboradorComponent } from './modules/main/pages/colaborador/colaborador.component';
+import { ColaboradorComponent } from './modules/main/pages/colaborador/main/colaborador.component';
 import { ClienteComponent } from './modules/main/pages/cliente/main/cliente.component';
 import { SharedModule } from './shared/shared.module';
 
