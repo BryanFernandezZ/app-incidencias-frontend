@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DispositivoCliente } from 'src/app/shared/model/dispositivo-cliente.model';
 import { DispositivoService } from 'src/app/shared/services/dispositivo.service';
 
@@ -18,6 +18,7 @@ export class DispositivosClienteComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private dispositivoService: DispositivoService,
+    private router: Router,
   ) {
     this.clienteId = this.activatedRoute.snapshot.queryParams['id'] as number;
     this.nombreCliente = this.activatedRoute.snapshot.queryParams['cliente'] as string;
@@ -35,6 +36,10 @@ export class DispositivosClienteComponent implements OnInit {
         complete: () => {}
       }
     )
+  }
+
+  onVincularDispositivo() {
+    this.router.navigate(['APP-INCIDENCIAS/colaborador/clientes/dispositivos/vincular', this.clienteId])
   }
 
 }

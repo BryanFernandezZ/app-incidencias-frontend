@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IncidenciaResponseDto } from 'src/app/modules/main/pages/cliente/pages/incidencias/dto/incidencia.response';
 import { IncidenciaLista } from 'src/app/modules/main/pages/cliente/pages/incidencias/model/incidencia-lista.model';
-import { DispositivoClienteResponseDto } from '../dto/dispositivo.response';
+import { DispositivoClienteResponseDto, DispositivoResponseDto } from '../dto/dispositivo.response';
 import { DispositivoCliente } from '../model/dispositivo-cliente.model';
 import { Incidencia } from 'src/app/modules/main/pages/cliente/pages/incidencias/model/incidencia.model';
 import { ClienteListaResponseDto } from 'src/app/modules/main/pages/colaborador/pages/clientes/dto/clientes-list.response';
@@ -10,6 +10,7 @@ import { IncidenciasClienteList } from 'src/app/modules/main/pages/colaborador/p
 import { IncidenciasClienteListResponseDto } from 'src/app/modules/main/pages/colaborador/pages/incidencias-cliente/dto/incidencias-cliente-list.response';
 import { IncidenciaDetalleAtencionResponseDto } from 'src/app/modules/main/pages/colaborador/pages/incidencias-cliente/dto/incidencia-detalle-atencion.response';
 import { IncidenciaDetalleAtencion } from 'src/app/modules/main/pages/colaborador/pages/incidencias-cliente/model/incidencia-detalle-atencion.model';
+import { Dispositivo } from '../model/dispositivo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -102,5 +103,15 @@ export class MapperService {
       }
     }
     return null;
+  }
+
+  mapToListaDispositivos(dispositivos: Array<DispositivoResponseDto>): Array<Dispositivo> {
+    return dispositivos.map(item => (
+      {
+        idDispositivo: item.id_dispositivo,
+        nombre: item.nombre,
+        nombreCorto: item.nombre_corto,
+      }
+    ))
   }
 }

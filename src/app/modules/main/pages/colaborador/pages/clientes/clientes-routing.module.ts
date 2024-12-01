@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { ClientesListComponent } from "./pages/clientes-list/clientes-list.component";
 import { DispositivosClienteComponent } from "./pages/dispositivos-cliente/dispositivos-cliente.component";
 import { ClientesNewComponent } from "./pages/clientes-new/clientes-new.component";
+import { VincularDispositivoComponent } from "./pages/vincular-dispositivo/vincular-dispositivo.component";
 
 const routes: Routes = [
     {
@@ -19,6 +20,11 @@ const routes: Routes = [
         path: 'dispositivos',
         component: DispositivosClienteComponent,
         title: 'Dispositivos vinculados',
+    },
+    {
+        path: 'dispositivos/vincular/:id',
+        component: VincularDispositivoComponent,
+        title: 'Vincular dispositivo',
     },
 ]
 

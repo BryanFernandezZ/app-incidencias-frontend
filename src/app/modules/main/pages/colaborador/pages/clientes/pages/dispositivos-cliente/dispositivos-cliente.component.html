@@ -1,8 +1,7 @@
 <div class="p-5">
     <div class="d-flex justify-content-between align-items-center gap-3">
         <h2> Dispositivos de {{ nombreCliente }} </h2>
-        <!-- (click)="onRegistrar()" -->
-        <a type="button" class="nuevo" > <mat-icon svgIcon="icon_plus"></mat-icon> </a>
+        <a type="button" class="nuevo" (click)="onVincularDispositivo()"> <mat-icon svgIcon="icon_plus"></mat-icon> </a>
     </div>
 
     <table class="table mt-3">

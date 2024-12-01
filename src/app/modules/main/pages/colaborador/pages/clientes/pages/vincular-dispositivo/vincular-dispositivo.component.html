@@ -1,0 +1,73 @@
+<div class="p-4">
+
+    <div class="mb-3">
+        <h4> Vincular dispositivo </h4>    
+    </div>
+
+    <form class="mb-4" [formGroup]="dispositivoForm">
+
+        <div class="mb-3">
+            <label class="form-label"> Dispositivo </label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Nombre de dispositivo" formControlName="nombre">
+                <div class="input-group-text text-bg-primary">
+                  <a type="button" (click)="onBuscarDispositivos()"> Buscar </a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <section class="mb-3">
+        <h5> Dispositivos Encontrados </h5>
+        <div class="dispositivos-encontrados-container">
+            <ng-container *ngIf="isDispositivosLoading">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <app-spinner></app-spinner>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="!isDispositivosLoading && dispositivosList.length === 0">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <span> No se encontraron dispositivos </span>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="!isDispositivosLoading && dispositivosList.length !== 0">
+                <ng-container *ngFor="let d of dispositivosList">
+                    <div class="d-flex justify-content-between align-items-center gap-3 mb-2">
+                        <span> {{ d.nombre }} </span>
+                        <button type="button" class="btn btn-secondary" (click)="onSeleccionarDispositivo(d.idDispositivo, d.nombre)"> Seleccionar </button>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+
+        <hr />
+
+    </section>
+
+    <form class="mb-3" [formGroup]="vincularDispositivoForm">
+        <div class="mb-3">
+            <label class="form-label"> Dispositivo seleccionado </label>
+            <input type="text" class="form-control" formControlName="nombreDispositivo"
+                [ngClass]="{ 'is-invalid': isSubmit && idDispositivo.hasError('required')}">
+            <div class="invalid-feedback"> *Debe seleccionar un dispositivo* </div>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label"> Ubicación referencial </label>
+            <input type="text" class="form-control" formControlName="ubicacionReferencial"
+                [ngClass]="{ 'is-invalid': isSubmit && ubicacionReferencial.hasError('required')}">
+            <div class="invalid-feedback"> *Debe proporcinar una ubicación referencial para el dispositivo* </div>
+        </div>
+
+        <div class="mb-3">
+            <ng-container *ngIf="isVincularDispositivoLoading">
+                <app-spinner></app-spinner>
+            </ng-container>
+            <ng-container *ngIf="!isVincularDispositivoLoading">
+                <button type="button" class="btn btn-success" (click)="onVincularDispositivo()"> Vincular dispositivo </button>
+            </ng-container>
+        </div>
+    </form>
+
+</div>

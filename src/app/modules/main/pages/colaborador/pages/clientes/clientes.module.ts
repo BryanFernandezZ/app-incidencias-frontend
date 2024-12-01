@@ -8,6 +8,7 @@ import { ClientesNewComponent } from './pages/clientes-new/clientes-new.componen
 import { ClientesFormComponent } from './components/clientes-form/clientes-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { VincularDispositivoComponent } from './pages/vincular-dispositivo/vincular-dispositivo.component';
 
 
 
@@ -16,7 +17,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ClientesListComponent,
     DispositivosClienteComponent,
     ClientesNewComponent,
-    ClientesFormComponent
+    ClientesFormComponent,
+    VincularDispositivoComponent
   ],
   imports: [
     CommonModule,
