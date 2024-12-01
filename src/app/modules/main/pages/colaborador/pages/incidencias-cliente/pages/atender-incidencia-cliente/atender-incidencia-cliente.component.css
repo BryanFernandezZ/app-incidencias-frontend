@@ -1,0 +1,11 @@
+textarea {
+    height: 350px;
+    max-height: 350px;
+}
+
+.detalle-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}

@@ -1,0 +1,58 @@
+<div class="p-5">
+    <div class="d-flex justify-content-between align-items-center gap-3">
+        
+        <div class="d-flex justify-content-between align-items-center gap-3">
+            <h2> Lista de Incidencias </h2>
+            <!-- (click)="onRegistrar()" -->
+            <a type="button" class="nuevo" > <mat-icon svgIcon="icon_plus"></mat-icon> </a>
+        </div>
+
+        <ul class="d-flex justify-content-start align-items-center gap-3 m-0 p-0">
+            <ng-container *ngFor="let e of estados">
+                <li>
+                    <div class="estado-color me-1" [style.background]="e.color"></div>
+                    <span> {{ e.estado }} </span>
+                </li>
+            </ng-container>
+        </ul>
+    </div>
+
+
+    <table class="table mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th> ID </th>
+                <th> Asunto </th>
+                <th> Detalle </th>
+                <th> Cliente </th>
+                <th> F.Registro </th>
+                <th>  </th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let i of incidenciasList">
+                <tr>
+                    <td> {{ i.idIncidencia }} </td>
+                    <td> {{ i.asunto }} </td>
+                    <td> {{ i.detalle }} </td>
+                    <td> {{ i.cliente }} </td>
+                    <td> {{ i.fechaRegistro }} </td>
+                    <td>
+                        <div class="d-flex justify-content-center align-items-center gap-2">
+                            <button type="button" class="btn btn-outline-secondary" (click)="onAtenderIncidencia(i.idIncidencia)"> Atender </button>
+                            <ng-container *ngIf="i.pendiente">
+                                <div class="estado-color" [style.background]="pendienteColor"></div>
+                            </ng-container>
+                            <ng-container *ngIf="i.presencial">
+                                <div class="estado-color" [style.background]="atencionDomicilioColor"></div>
+                            </ng-container>
+                            <ng-container *ngIf="i.solucionado">
+                                <div class="estado-color" [style.background]="solucionadoColor"></div>
+                            </ng-container>
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

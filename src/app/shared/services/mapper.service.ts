@@ -6,6 +6,10 @@ import { DispositivoCliente } from '../model/dispositivo-cliente.model';
 import { Incidencia } from 'src/app/modules/main/pages/cliente/pages/incidencias/model/incidencia.model';
 import { ClienteListaResponseDto } from 'src/app/modules/main/pages/colaborador/pages/clientes/dto/clientes-list.response';
 import { ClienteLista } from 'src/app/modules/main/pages/colaborador/pages/clientes/model/cliente-lista.model';
+import { IncidenciasClienteList } from 'src/app/modules/main/pages/colaborador/pages/incidencias-cliente/model/incidencias-cliente-list.model';
+import { IncidenciasClienteListResponseDto } from 'src/app/modules/main/pages/colaborador/pages/incidencias-cliente/dto/incidencias-cliente-list.response';
+import { IncidenciaDetalleAtencionResponseDto } from 'src/app/modules/main/pages/colaborador/pages/incidencias-cliente/dto/incidencia-detalle-atencion.response';
+import { IncidenciaDetalleAtencion } from 'src/app/modules/main/pages/colaborador/pages/incidencias-cliente/model/incidencia-detalle-atencion.model';
 
 @Injectable({
   providedIn: 'root'
@@ -67,5 +71,36 @@ export class MapperService {
         apellido: item.apellido,
       }
     ))
+  }
+
+  mapToListaIncidenciasClientes(incidencias: Array<IncidenciasClienteListResponseDto>): Array<IncidenciasClienteList> {
+    return incidencias.map(item => (
+      {
+        idIncidencia: item.id_incidencia,
+        asunto: item.asunto,
+        detalle: item.detalle,
+        cliente: item.cliente,
+        pendiente: item.pendiente,
+        presencial: item.presencial,
+        solucionado: item.solucionado,
+        fechaRegistro: item.fecha_registro,
+        usuarioAsignado: item.usuario_asignado,
+      }
+    ))
+  }
+
+  mapToDetalleIncidenciaAtender(response: IncidenciaDetalleAtencionResponseDto | undefined): IncidenciaDetalleAtencion | null {
+    if(response) {
+      return {
+        idIncidencia: response.id_incidencia,
+        solicitante: response.solicitante,
+        dispositivo: response.dispositivo,
+        detalle: response.detalle,
+        imagen: response.imagen,
+        presencial: response.presencial,
+        solucionado: response.solucionado,
+      }
+    }
+    return null;
   }
 }

@@ -14,3 +14,7 @@ li {
     justify-content: start;
     align-items: center;
 }
+
+td {
+    vertical-align: middle;
+}

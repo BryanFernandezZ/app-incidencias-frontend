@@ -40,3 +40,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     justify-content: center;
     align-items: center;
 }
+
+.estado-color {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+}
