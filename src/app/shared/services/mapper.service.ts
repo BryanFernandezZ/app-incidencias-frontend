@@ -11,6 +11,8 @@ import { IncidenciasClienteListResponseDto } from 'src/app/modules/main/pages/co
 import { IncidenciaDetalleAtencionResponseDto } from 'src/app/modules/main/pages/colaborador/pages/incidencias-cliente/dto/incidencia-detalle-atencion.response';
 import { IncidenciaDetalleAtencion } from 'src/app/modules/main/pages/colaborador/pages/incidencias-cliente/model/incidencia-detalle-atencion.model';
 import { Dispositivo } from '../model/dispositivo.model';
+import { TecnicoDisponibilidadResponseDto } from 'src/app/modules/main/pages/colaborador/pages/incidencias-cliente/dto/tecnico-disponibilidad.response';
+import { TecnicoDisponibilidad } from 'src/app/modules/main/pages/colaborador/pages/incidencias-cliente/model/tecnico-disponibilidad.model';
 
 @Injectable({
   providedIn: 'root'
@@ -111,6 +113,17 @@ export class MapperService {
         idDispositivo: item.id_dispositivo,
         nombre: item.nombre,
         nombreCorto: item.nombre_corto,
+      }
+    ))
+  }
+
+  mapToListaTecnicosDisponibilidad(tecnicos: Array<TecnicoDisponibilidadResponseDto>): Array<TecnicoDisponibilidad> {
+    return tecnicos.map(item => (
+      {
+        idTecnico: item.id_tecnico,
+        nombre: item.nombre,
+        apellido: item.apellido,
+        disponible: Boolean(item.disponible),
       }
     ))
   }

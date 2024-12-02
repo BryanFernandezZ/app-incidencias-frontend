@@ -8,6 +8,9 @@ import { IncidenciasClienteListResponseDto } from '../dto/incidencias-cliente-li
 import { IncidenciaDetalleAtencionResponseDto } from '../dto/incidencia-detalle-atencion.response';
 import { IncidenciaDetalleAtencion } from '../model/incidencia-detalle-atencion.model';
 import { ActualizarEstadoIncidenciaRequestDto } from '../dto/actualizar-estado-incidencia.request';
+import { TecnicoDisponibilidad } from '../model/tecnico-disponibilidad.model';
+import { TecnicoDisponibilidadResponseDto } from '../dto/tecnico-disponibilidad.response';
+import { AsignarTecnicoIncidenciaRequestDto } from '../dto/asignar-tecnico-incidencia.request';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +42,19 @@ export class IncidenciasClienteService {
       idEstado: idEstado,
     }
     return this.httpClient.put<any>(`${this.baseUrl}/atencion/actualizar-estado`, actualizarEstadoIncidenciaRequestDto);
+  }
+
+  listarTecnicosDisponibilidad(): Observable<Array<TecnicoDisponibilidad>> {
+    return this.httpClient.get<Array<TecnicoDisponibilidadResponseDto>>(`${this.baseUrl}/tecnicos`).pipe(
+      map(response => this.mapperService.mapToListaTecnicosDisponibilidad(response)),
+    )
+  }
+
+  asignarTecnicoIncidencia(idIncidencia: number, idTecnico: number): Observable<any> {
+    const asignarTecnicoIncidencia: AsignarTecnicoIncidenciaRequestDto = {
+      idIncidencia: idIncidencia, idTecnico: idTecnico,
+    };
+    return this.httpClient.post<any>(`${this.baseUrl}/tecnicos/asignar`, asignarTecnicoIncidencia);
   }
 
 }

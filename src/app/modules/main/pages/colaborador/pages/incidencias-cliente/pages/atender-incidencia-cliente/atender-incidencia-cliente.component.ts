@@ -14,7 +14,7 @@ export class AtenderIncidenciaClienteComponent implements OnInit {
 
   incidenciaDetalle: IncidenciaDetalleAtencion | null = null;
 
-  idIncidencia: number= 0;
+  idIncidencia: number = 0;
   isDetalleLoading: boolean = true;
 
   constructor(
@@ -22,6 +22,7 @@ export class AtenderIncidenciaClienteComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private alertService: AlertService,
     private location: Location,
+    private router: Router,
   ) {
     this.idIncidencia = this.activatedRoute.snapshot.params['id'] as number;
   }
@@ -44,12 +45,12 @@ export class AtenderIncidenciaClienteComponent implements OnInit {
     )
   }
 
-  onConfirmActualizacion(idEstado: number) {
-    const estado = idEstado === 2 ? 'Solucionado' : 'Atencion presencial';
-    this.alertService.confirmarActualizarEstadoIncidencia(estado).subscribe(
+  onConfirmActualizacion() {
+    //  2 => SOLUCIONADO
+    this.alertService.confirmarActualizarEstadoIncidencia('Solucionado').subscribe(
       {
         next: (isConfirmed) => {
-          if(isConfirmed) this.actualizarEstadoIncidencia(idEstado);
+          if (isConfirmed) this.actualizarEstadoIncidencia(2);
         }
       }
     )
@@ -66,6 +67,10 @@ export class AtenderIncidenciaClienteComponent implements OnInit {
         }
       }
     )
+  }
+
+  onAtencionPresencial() {
+    this.router.navigate(['APP-INCIDENCIAS/colaborador/incidencias/atender/presencial', this.idIncidencia]);
   }
 
   goToIncidenciasList() {

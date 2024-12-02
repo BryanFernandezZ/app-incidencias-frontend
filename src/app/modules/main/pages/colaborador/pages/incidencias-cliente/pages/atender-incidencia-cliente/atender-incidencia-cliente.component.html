@@ -42,8 +42,8 @@
                         <label class="form-label"> Estado de incidencia </label>
         
                         <div class="d-flex flex-column justify-content-start align-items-start gap-3">
-                            <button type="button" class="btn btn-success" (click)="onConfirmActualizacion(2)" [disabled]="incidenciaDetalle.solucionado"> Solucionado </button>
-                            <button type="button" class="btn btn-outline-warning" (click)="onConfirmActualizacion(1)" [disabled]="incidenciaDetalle.presencial || incidenciaDetalle.solucionado"> Atencion presencial </button>
+                            <button type="button" class="btn btn-success" (click)="onConfirmActualizacion()" [disabled]="incidenciaDetalle.solucionado"> Solucionado </button>
+                            <button type="button" class="btn btn-outline-warning" (click)="onAtencionPresencial()" [disabled]="incidenciaDetalle.presencial || incidenciaDetalle.solucionado"> Atencion presencial </button>
                         </div>
                         
                     </div>

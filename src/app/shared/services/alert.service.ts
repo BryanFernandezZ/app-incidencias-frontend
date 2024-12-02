@@ -31,4 +31,17 @@ export class AlertService {
       }).then((result) => result.isConfirmed)
     );
   }
+
+  confirmarAsignacionTecnicoIncidencia(nombreCompleto: string): Observable<boolean> {
+    return from(
+      Swal.fire({
+        title: `Asignar a ${nombreCompleto}`,
+        text: `Está a punto de cambiar el estado de la incidencia a "Atencion presencial". ¿Desea continuar?`,
+        showConfirmButton: true,
+        confirmButtonText: 'Continuar',
+        showCancelButton: true,
+        cancelButtonText: 'No',
+      }).then((result) => result.isConfirmed)
+    );
+  }
 }

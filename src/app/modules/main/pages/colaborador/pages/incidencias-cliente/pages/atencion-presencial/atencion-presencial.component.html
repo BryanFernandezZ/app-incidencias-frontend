@@ -1,0 +1,48 @@
+<div class="p-4">
+
+    <div class="mb-5">
+        <h4> Configurar atención presencial </h4>    
+    </div>
+
+    <section class="mb-3">
+        <h5 class="mb-3"> Técnicos disponibilidad </h5>
+        <div class="dispositivos-encontrados-container">
+            <ng-container *ngIf="isTecnicosLoading">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <app-spinner></app-spinner>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!isTecnicosLoading && tecnicosList.length === 0">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <span> No se encontraron dispositivos </span>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!isTecnicosLoading && tecnicosList.length !== 0">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th> ID </th>
+                            <th> Nombre Completo </th>
+                            <th> Disponibilidad </th>
+                            <th>  </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let t of tecnicosList">
+                            <tr>
+                                <td> {{ t.idTecnico }} </td>
+                                <td> {{ t.nombre }} {{ t.apellido }} </td>
+                                <td> {{ t.disponible ? 'Disponible': 'En operación' }} </td>
+                                <td> <button type="button" class="btn btn-secondary" (click)="onAsignarTecnico(t.idTecnico, t.nombre, t.apellido)"> Asignar técnico </button> </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </ng-container>
+        </div>
+
+    </section>
+
+</div>
