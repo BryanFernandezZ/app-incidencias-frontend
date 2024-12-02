@@ -4,6 +4,7 @@ export interface IncidenciaDetalleAtencion {
     dispositivo: string;
     detalle: string;
     imagen: string;
+    telefono: string;
     presencial: boolean;
     solucionado: boolean;
 }

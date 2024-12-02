@@ -100,6 +100,7 @@ export class MapperService {
         dispositivo: response.dispositivo,
         detalle: response.detalle,
         imagen: response.imagen,
+        telefono: response.telefono,
         presencial: response.presencial,
         solucionado: response.solucionado,
       }
